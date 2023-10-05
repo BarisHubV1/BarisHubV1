@@ -1,0 +1,89 @@
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/SaveManager.lua"))()
+local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/dawid-scripts/Fluent/master/Addons/InterfaceManager.lua"))()
+
+local Window = Fluent:CreateWindow({
+    Title = "Baris Hub |",
+    SubTitle = "by baris",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(500, 350),
+    Acrylic = true,
+    Theme = "Dark",
+    MinimizeKey = Enum.KeyCode.LeftControl
+})
+
+local Tabs = {
+    Main = Window:AddTab({ Title = "Main", Icon = "sword" }),
+    Credits = Window:AddTab({ Title = "Credits", Icon = "thumbs-up"}),
+    Settings = Window:AddTab({ Title = "Settings", Icon = "settings" })
+}
+
+local Options = Fluent.Options
+
+do
+    Tabs.Main:AddButton({
+        Title = "Auto Parry | The Best One",
+        Description = "Basically just auto defends yourself from the ball.",
+        Callback = function()
+            _G.UI_Size = 200 -- config ui size
+loadstring(game:HttpGet("https://raw.githubusercontent.com/3345-c-a-t-s-u-s/-beta-/main/AutoParry.lua"))()
+        end
+    })
+
+
+
+    Tabs.Main:AddButton({
+        Title = "Anti Afk",
+        Description = "Prevents inactivity kicks.",
+        Callback = function()
+            game:GetService("Players").LocalPlayer.Idled:connect(function()
+                game:GetService("VirtualInputManager"):Button2Down(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+                game:GetService("VirtualInputManager"):Button2Up(Vector2.new(0,0),workspace.CurrentCamera.CFrame)
+            end)
+        end
+    })
+
+
+    
+    Tabs.Main:AddButton({
+        Title = "Auto Parry V2",
+        Description = "Another version of auto parry.",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernoKarl/opensrc/main/BladeBall/Scripts/initialization.lua", true))()
+        end
+    })
+
+
+
+    Tabs.Main:AddButton({
+        Title = "Auto Parry V3",
+        Description = "Basic auto parry, but actually works very good.",
+        Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/1f0yt/community/main/Circle"))()
+        end
+    })
+
+
+
+    Tabs.Credits:AddParagraph({
+        Title = "Credits",
+        Content = "Credits to barissolos on discord!"
+    })
+end
+
+
+
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+SaveManager:IgnoreThemeSettings()
+SaveManager:SetIgnoreIndexes({})
+InterfaceManager:SetFolder("FluentScriptHub")
+SaveManager:SetFolder("FluentScriptHub/specific-game")
+
+InterfaceManager:BuildInterfaceSection(Tabs.Settings)
+SaveManager:BuildConfigSection(Tabs.Settings)
+
+
+Window:SelectTab(1)
+
+SaveManager:LoadAutoloadConfig()￼Enter
