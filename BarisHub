@@ -59,7 +59,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/3345-c-a-t-s-u-s/-bet
         Title = "Auto Parry V3",
         Description = "Basic auto parry, but actually works very good.",
         Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/1f0yt/community/main/Circle"))()
+            loadstring(game:HttpGet('https://raw.githubusercontent.com/marmfjjwjw223/DownGroud/main/DOWNGROUND'))()
         end
     })
 
